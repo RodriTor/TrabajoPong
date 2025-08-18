@@ -18,13 +18,12 @@ public class Tablero extends JPanel {
     private final int punmax = 5;
     private boolean juegoTerminado = false;
 
-    private long tiempoInicio; // milisegundos
-    private final long tiempoLimite = 60_000; // 1 minuto en ms
+    private long tiempoInicio; 
+    private final long tiempoLimite = 60_000;
 
     public Tablero() {
         setBackground(Color.BLACK);
 
-        // NO inicializamos tiempoInicio aquí para que arranque después del conteo
     }
     
     
@@ -41,30 +40,29 @@ public class Tablero extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        // Fondo con gradiente
+      
         GradientPaint grad = new GradientPaint(0, 0, new Color(10, 10, 30), getWidth(), getHeight(), new Color(30, 0, 50));
         g2.setPaint(grad);
         g2.fillRect(0, 0, getWidth(), getHeight());
 
-        // Línea central discontinua
+       
         g2.setColor(Color.GRAY);
         Stroke oldStroke = g2.getStroke();
         g2.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{15}, 0));
         g2.drawLine(getWidth() / 2, 0, getWidth() / 2, getHeight());
         g2.setStroke(oldStroke);
 
-        // Pelota color neón
+    
         g2.setColor(new Color(0, 255, 200));
         g2.fill(pelota.getPelota());
 
-        // Raquetas color neón
+  
         g2.setColor(new Color(255, 100, 100));
         g2.fill(r1.getRaqueta());
 
         g2.setColor(new Color(100, 150, 255));
         g2.fill(r2.getRaqueta());
 
-        // Marcador
         g2.setFont(new Font("Consolas", Font.BOLD, 40));
         g2.setColor(Color.WHITE);
         String textoP1 = String.valueOf(punj1);
@@ -75,14 +73,13 @@ public class Tablero extends JPanel {
         int anchoTextoP2 = g2.getFontMetrics().stringWidth(textoP2);
         g2.drawString(textoP2, getWidth() * 3 / 4 - anchoTextoP2 / 2, 60);
 
-        // Mostrar tiempo restante en segundos arriba al centro
+
         long tiempoPasado = System.currentTimeMillis() - tiempoInicio;
         long tiempoRestante = Math.max(0, tiempoLimite - tiempoPasado);
         String textoTiempo = "Tiempo: " + (tiempoRestante / 1000) + "s";
         int anchoTiempo = g2.getFontMetrics().stringWidth(textoTiempo);
         g2.drawString(textoTiempo, getWidth() / 2 - anchoTiempo / 2, 60);
 
-        // Texto ganador
         if (juegoTerminado) {
             String ganador;
             if (punj1 > puntj2) {
@@ -136,7 +133,7 @@ public class Tablero extends JPanel {
             resetearPelota();
         }
 
-        // Verificar fin: si alguno llegó a 5 o se acabó el tiempo
+
         long tiempoPasado = System.currentTimeMillis() - tiempoInicio;
         if (punj1 >= punmax || puntj2 >= punmax || tiempoPasado >= tiempoLimite) {
             juegoTerminado = true;
