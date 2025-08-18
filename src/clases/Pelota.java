@@ -18,10 +18,7 @@ public class Pelota {
         return new Rectangle2D.Double(x, y, anc, alt);
     }
 
-    /**
-     * Mueve la pelota y detecta si salió por las paredes laterales.
-     * @return 0 si no salió, 1 si salió por izquierda, 2 si salió por derecha
-     */
+
     public int mover(Rectangle limites, boolean colisionR1, boolean colisionR2, Raqueta r1, Raqueta r2) {
         x += dx;
         y += dy;
@@ -36,7 +33,7 @@ public class Pelota {
             x = r2.getLeftEdge() - anc - pushBack; 
         }
 
-        // Rebote techo y piso
+
         if (y < 0) {
             dy = Math.abs(dy);
             y = 0;
@@ -46,7 +43,7 @@ public class Pelota {
             y = (int) (limites.getMaxY() - alt);
         }
 
-        // Detectar si salió por izquierda o derecha
+       
         if (x < 0) {
             return 1; // salió por izquierda
         }
