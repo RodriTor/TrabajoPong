@@ -15,11 +15,11 @@ public class Hilo extends Thread {
     @Override
     public void run() {
         while (running) {
-            lamina.actualizar();   // Mover pelota y raquetas
-            lamina.repaint();      // Para evitar interferencias entre pelota y raqueta
+            lamina.actualizar();   
+            lamina.repaint();     
 
             try {
-                Thread.sleep(6);   // Evitar lag
+                Thread.sleep(6);  
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
