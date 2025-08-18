@@ -25,7 +25,7 @@ public class Ventana extends JFrame {
         lamina = new Tablero();
         add(lamina, BorderLayout.CENTER);
 
-        lamina.addKeyListener(new Teclado()); // 🔹 Esto ya es la corrección del foco
+        lamina.addKeyListener(new Teclado()); 
         lamina.setFocusable(true);
 
         crearPanelBotones();
@@ -33,11 +33,11 @@ public class Ventana extends JFrame {
 
         if (mostrarContador) {
             mostrarCuentaRegresiva();
-            lamina.reiniciarJuego(); // 🔹 Resetea puntos y pelota
+            lamina.reiniciarJuego(); 
             lamina.iniciarTimer();
             iniciarHilo();
         } else {
-            lamina.reiniciarJuego(); // 🔹 También aquí
+            lamina.reiniciarJuego(); 
             lamina.iniciarTimer();
             iniciarHilo();
         }
