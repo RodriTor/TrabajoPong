@@ -26,11 +26,19 @@ public class Pelota {
         int pushBack = 5; 
 
         if (colisionR1) {
-            dx = Math.abs(dx);  
-            x = r1.getRightEdge() + pushBack; 
+            dx = Math.abs(dx);
+          
+            if (dx < 10) { 
+                dx += 1; 
+            }
+            x = r1.getRightEdge() + pushBack;
         } else if (colisionR2) {
-            dx = -Math.abs(dx); 
-            x = r2.getLeftEdge() - anc - pushBack; 
+            dx = -Math.abs(dx);
+         
+            if (Math.abs(dx) < 10) { 
+                dx -= 1; 
+            }
+            x = r2.getLeftEdge() - anc - pushBack;
         }
 
 
@@ -45,16 +53,15 @@ public class Pelota {
 
        
         if (x < 0) {
-            return 1; // salió por izquierda
+            return 1; 
         }
         if (x > limites.getMaxX() - anc) {
-            return 2; // salió por derecha
+            return 2; 
         }
 
-        return 0; // no salió
+        return 0; 
     }
 
-    // Getters y setters
 
     public int getX() {
         return x;
@@ -100,6 +107,7 @@ public class Pelota {
         dx = -dx;
     }
 }
+
 
 
 
